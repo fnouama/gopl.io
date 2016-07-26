@@ -1,17 +1,17 @@
 package main
 
 import (
-	"time"
-	"os"
 	"fmt"
-	"net/http"
 	"io"
 	"io/ioutil"
+	"net/http"
+	"os"
+	"time"
 )
 
 func main() {
-	start	:= time.Now()
-	ch	:= make(chan string)
+	start := time.Now()
+	ch := make(chan string)
 	for _, url := range os.Args[1:] {
 		go fetch(url, ch)
 	}
@@ -21,7 +21,7 @@ func main() {
 	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
 }
 
-func fetch(url string, ch chan <- string) {
+func fetch(url string, ch chan<- string) {
 	start := time.Now()
 	resp, err := http.Get(url)
 	if err != nil {
